@@ -4,4 +4,4 @@ This was a group assignment highlighting use of event listeners and Bootstrap fe
 
 
 **Link:**
-[website](sortinghat-mcnair.netlify.app)
+[sortinghat-mcnair.netlify.app](sortinghat-mcnair.netlify.app)
