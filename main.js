@@ -46,7 +46,7 @@ const getStudentName = (e) => {
 
 // THIS HOLDS BUTTON EVENTS
 const buttonEvents = () => {
-  // these assign the event to th sort button
+  // these assign the event to the sort button
   let el = document.querySelector("#nameForm");
   el.addEventListener("click", getStudentName);
   el.addEventListener("click", houseCards);
@@ -54,16 +54,18 @@ const buttonEvents = () => {
 };
 
 // Message for an empty form
-const emptyForm = () => {
-    let uname = document.querySelector('#formInput').value;
-        if (uname === ''){
-            alert("Put 'yer name in the hat!");
-            return false; 
-        }
-        return true;
-    };
+const errorMessage = (student) => {
+    if (student) {
+        document.querySelector('#nameForm').innerHTML = "";
+    } else {
+        document.querySelector('#nameForm').innerHTML = 
+            `<div style="color: red;margin-bottom: 10px;">
+                <b>Enter your name</b>
+            </div>`;
+    }
+};
 
-// THIS SPITS OUT A RANDOM HOUSE
+// THIS RETURNS A RANDOM HOUSE
 const randomizer = () => {
   const houseArray = ["Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"];
   let randomHouse = houseArray[Math.floor(Math.random() * houseArray.length)];
@@ -71,33 +73,35 @@ const randomizer = () => {
 };
 // THIS PRINTS THE CARDS
 const houseCards = (e) => {
-  let domString = "";
-  for (let i = 0; i < studentInput.length; i++) {
-    if (studentInput[i].studentName) {
-      domString += `<div class="card ${studentInput[i].house}" style="width: 18rem;">
-                   
-                    <div class="card-body">
-                    <h2 class="card-title">${studentInput[i].house}</h2>
-                    <h3 id="studentsNameCard">${studentInput[i].studentName}</h3>
-                    <div>
-                    <button id="expel"> EXPEL! </button>
-                    </div>
-                    </div>
-                    </div>`;
+    let domString = "";
+    for (let i = 0; i < studentInput.length; i++) {
+      if (studentInput[i].studentName) {
+        domString += `<div class="card ${studentInput[i].house}" style="width: 18rem;">
+                      <div class="card-body">
+                      <h2 class="card-title">${studentInput[i].house}</h2>
+                      <h3 id="studentsNameCard">${studentInput[i].studentName}</h3>
+                      <div>
+                      <button type="button" id="${i}"> EXPEL! </button>
+                      </div>
+                      </div>
+                      </div>`;
+      }
     }
-  }
-  printToDom("#cardSection", domString);
-  // this assigns an event listener to the expel button
-  document.querySelector("#cardSection").addEventListener("click", expelStudent);
-};
+    printToDom("#cardSection", domString);
+    // this assigns an event listener to the expel button
+    document
+      .querySelector("#cardSection")
+      .addEventListener("click", expelStudent);
+  };
 // This tells the computer to execute this function when the target is clicking the expel button
 const expelStudent = (e) => {
-  let buttonId = e.target.id;
-  if (buttonId === "expel") {
-    studentInput.splice(e.target, 1);
-    houseCards();
-  }
-};
+    let buttonId = e.target.type;
+
+    if (buttonId === "button") {
+      studentInput.splice(e.target.id, 1);
+      houseCards();
+    }
+  };
 
 const init = () => {
   letsStartSorting();
