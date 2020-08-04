@@ -1,5 +1,6 @@
 body {
     background-color: maroon;
+    font-family: 'Acme', sans-serif;
 }
 
 .jumbotron {
@@ -7,6 +8,52 @@ body {
     color: gold;
 }
 
+#cardSection {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    /* margin: 15px; */
+}
+
 .card {
+    border: 5px dotted black;
+    border-radius: 16px;
     text-align: center;
+    padding: 10px;
+    padding-right: 7px;
+}
+
+/* .card img { 
+    height: 250px;
+    width: 150px
+} */
+
+#student-card {
+    border: 10px black;
+    text-align: center;
+    margin-bottom: 80px;
+    background-color: gold;
+}
+
+#student-card h2 {
+    background-color: gold;
+}
+
+.Gryffindor{
+    background-color: 	#FFC500;
+    border: 3px #7F0909 solid;
+}
+.Hufflepuff{
+    background-color: #EEE117;
+    border: 3px solid #000000;
+}
+.Slytherin{
+    background-color: #0D6217;
+    border: solid 3px #AAAAAA;
+    color: white;
+}
+.Ravenclaw{
+    background-color: #000A90;
+    border: solid 3px #946B2D;
+    color: white;
 }
